@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <%- include("partials/header", { title: "header" }) %>
+        <form action="/compose" method="POST">
+            <h1 class="text-3xl font-bold">Compose</h1>
+            <p>Title</p>
+            <input type="text" name="postTitle" placeholder="Title"
+                class="border-2 border-neutral-300 rounded-sm px-2 py-1">
+            <p>Message</p>
+            <textarea name="postBody" placeholder="Write your post here..."
+                class="border-2 border-neutral-300 rounded-sm h-65 w-180 p-3"></textarea>
+            <br>
+            <button type="submit" class="bg-emerald-400 text-white px-2 py-1 rounded-md">Publish</button>
+        </form>
+        <%- include("partials/footer") %>
+</body>
+
+</html>

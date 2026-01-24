@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <%- include("partials/header", { title: "header" }) %>
+    <div class="flex justify-between mb-5">
+      <h1 class="text-2xl font-bold">Home</h1>
+      <a href="/compose" class="bg-emerald-400 px-2 py-1 rounded-md text-white">
+        <button>Compose</button>
+      </a>
+    </div>
+
+    <%= homeStartingContent %>
+
+      <% if (posts.length> 0) { %>
+        <h2 class="mt-6 mb-4 text-xl font-bold">
+          Recent Posts
+        </h2>
+        <% } %>
+
+
+          <% posts.forEach(function(post) { %>
+            <div class="post mb-6 border-2 border-gray-300 px-3 py-2 rounded-xl">
+              <h2 class="font-bold">
+                <%= post.title %>
+              </h2>
+
+              <p>
+                <%= post.body.length> 300
+                  ? post.body.substring(0, 300) + "..."
+                  : post.body %>
+              </p>
+              <div class="flex gap-5 mt-3 mb-1">
+              <a href="/posts/<%= post.title %>" class="text-emerald-500 mt-3">
+                Read More
+              </a>
+
+              <div class="mt-2">
+                <button class="like-btn bg-emerald-400 text-white px-3 py-1 rounded " data-id="<%= post.id %>">
+                  Like <span id="likes-<%= post.id %>">
+                    <%= post.likes %>
+                  </span>
+                </button>
+
+                <p id="status-<%= post.id %>" class="text-xs text-gray-500"></p>
+              </div>
+              </div>
+            </div>
+            <% }) %>
+              <script src="/like.js"></script>
+              <%- include("partials/footer") %>
+
+</body>
+
+</html>
